@@ -28,12 +28,19 @@ def checkBingo(board):
     return False
 
 def runBingo(numbers,boards):
-    number_of_boards = len(boards)
+    last_board = -1
+    boards_left = [i for i in range(len(boards))]
     for number in numbers:
-        for i in range(number_of_boards):
+        for i in range(len(boards)):
             boards[i] = markNumbersAtBoard(boards[i],number)
             if checkBingo(boards[i])==True:
-                return [i,int(number)]
+                for x in boards_left:
+                    if x == i:
+                        boards_left.remove(x)
+        if len(boards_left) == 1:
+            last_board = boards_left[0]
+        elif len(boards_left) == 0:
+            return [last_board,int(number)]
     return [-1,-1]
 
 def calculateScore(board,last_number):
@@ -71,3 +78,4 @@ result = runBingo(numbers,boards)
 winning_board = boards[result[0]]
 last_number = result[1]
 print(calculateScore(winning_board,last_number))
+
