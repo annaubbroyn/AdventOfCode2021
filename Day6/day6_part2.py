@@ -12,6 +12,11 @@ def contribution(number,days_left):
         return 1 + contribution(6,days_left-number-1)+contribution(8,days_left-number-1)
     return contribution(6,days_left-number-1)+contribution(8,days_left-number-1)
 
+def contribution_1(number,days_left):
+    count_6 = days_left/6
+    
+
+
 
 result = len(fishes)
 for i in range(len(fishes)):
